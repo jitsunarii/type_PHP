@@ -1,12 +1,4 @@
-<?php
 
-
-
-
-
-
-
-?>
 <!DOCTYPE html>
 <html lang="jp">
 
@@ -155,13 +147,13 @@
     <!-- あなたのランクは -->
     <div id="finish_4" style="display: none">
         <p>あなたのランクは</p>
-    </div>
+    
     <!-- rank -->
-    <div>
+    
         <p id="rank"></p>
-    </div>
+    
     <!-- です -->
-    <div>
+    
         <p id="desu"></p>
     </div>
     <!-- TODO:全ての文字が表示した後に出てくるボタン -->
@@ -174,7 +166,7 @@
 **********************************************************************************************-->
     <!-- TODO:レビューフォーム（PHPでデータ送信） -->
     <a href="./review_txt_read.php">レビューを見る</a>
-    <form id="review" action="./review_txt_create.php" method="GET" style="display: block;">
+    <form id="review" action="./review_txt_create.php" method="GET" style="display: none;">
     <!-- 記入日    -->
 
     <label for="day">記入日:</label>
@@ -229,15 +221,19 @@
         //正解数のカウント
         let CORRECT_COUNT= 0;
 
+        const date = new Date();
+            const year = date.getFullYear();
+            const month = date.getMonth()+1;
+            const day = date.getDate();
         //問題の単語を表示させる関数
         function show_words() {
             $("#start").html(Q_Array[Q_WORD_CREATE].substring(A_WORD_LENGTH, Q_WORD_LENGTH_2));
-        }
-
+        };
+$(document).ready(()=>$("#today").append(`<input type="text" name="today" value="${year.toString().padStart(4,"0")}/${month.toString().padStart(2,"0")}/${day.toString().padStart(2,"0")}">`));
 
 /********************************************************************************************
 ゲームスタート
-**********************************************************************************************/        
+**********************************************************************************************/
 // スタートボタンを押した時の処理
 
         $("#start_button").click(function () {
@@ -423,15 +419,8 @@
                             }
                             //「タイトルに戻るボタン」を表示
                             $("#fin_Btn").css("display","block");
+                            $("#review").css("display","block");
                         }, 8000)
-     const date = new Date();
-            const year = date.getFullYear();
-            const month = date.getMonth();
-            const day = date.getDate();
-            console.log(date);
-            console.log(year);
-            console.log(month);
-            console.log(day);
           $("#today").append(`<input type="date" name="today" value="${year.toString().padStart(4,"0")}/${month.toString().padStart(2,"0")}/${day.toString().padStart(2,"0")}">`)
                 }
                 }

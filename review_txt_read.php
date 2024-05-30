@@ -104,8 +104,8 @@ $("#sort").change(()=>{
 };
     $("#reviews").empty();
     $("#sum_Review").empty();
-    let sort_Val=$("option:selected").val();
-    console.log(sort_Val);
+    $("#filter").val("ALL");
+    let sort_Val=$("option:selected","#sort").val();
 //////////TODO:評価高い順
     if(sort_Val==="rev_HIGH"){
         data.sort((a,b)=>{
@@ -133,11 +133,82 @@ else if(sort_Val==="rev_OLD"){
 show_Reviews();
 }
 });
+//フィルター機能
 $("#filter").change(()=>{
         $("#reviews").empty();
     $("#sum_Review").empty();
-    let filter_Val=$("option:selected").val();
-    console.log(sort_Val);
+    let filter_Val=$("option:selected","#filter").val();
+        function show_Reviews(){
+    $("#sum_Review").append(`<h1>評価数：${data.length}件</h1>`)
+    const list_arr = [];
+    for (let i = 0; i < data.length; i++) {
+      const stars = generateStars(Number(data[i].number));
+      list_arr.push(`<tr><td>評価:${stars}</td></tr><tr><td>${data[i].today}<td></tr><tr><td>タイトル：${data[i].title}</td></tr>
+      <tr><td>${data[i].message}</td></tr><tr><td>Name:${data[i].name}</td></tr>`);
+      $("#reviews").append(list_arr[i]);
+    }
+};
+//////TODO:全て表示
+if(filter_Val==="ALL"){
+show_Reviews();
+}
+//////TODO:評価5のみ表示
+else if(filter_Val==="5"){
+const Val5_Arr=data.filter((a)=>a.number==="5");
+    $("#sum_Review").append(`<h1>評価数：${Val5_Arr.length}件</h1>`)
+    const list_arr = [];
+    for (let i = 0; i < Val5_Arr.length; i++) {
+      const stars = generateStars(Number(Val5_Arr[i].number));
+      list_arr.push(`<tr><td>評価:${stars}</td></tr><tr><td>${Val5_Arr[i].today}<td></tr><tr><td>タイトル：${Val5_Arr[i].title}</td></tr>
+      <tr><td>${Val5_Arr[i].message}</td></tr><tr><td>Name:${Val5_Arr[i].name}</td></tr>`);
+      $("#reviews").append(list_arr[i]);
+}}
+//////TODO:評価4のみ表示
+else if(filter_Val==="4"){
+const Val4_Arr=data.filter((a)=>a.number==="4");
+    $("#sum_Review").append(`<h1>評価数：${Val4_Arr.length}件</h1>`)
+    const list_arr = [];
+    for (let i = 0; i < Val4_Arr.length; i++) {
+      const stars = generateStars(Number(Val4_Arr[i].number));
+      list_arr.push(`<tr><td>評価:${stars}</td></tr><tr><td>${Val4_Arr[i].today}<td></tr><tr><td>タイトル：${Val4_Arr[i].title}</td></tr>
+      <tr><td>${Val4_Arr[i].message}</td></tr><tr><td>Name:${Val4_Arr[i].name}</td></tr>`);
+      $("#reviews").append(list_arr[i]);
+}}
+//////TODO:評価3のみ表示
+else if(filter_Val==="3"){
+const Val3_Arr=data.filter((a)=>a.number==="3");
+    $("#sum_Review").append(`<h1>評価数：${Val3_Arr.length}件</h1>`)
+    const list_arr = [];
+    for (let i = 0; i < Val3_Arr.length; i++) {
+      const stars = generateStars(Number(Val3_Arr[i].number));
+      list_arr.push(`<tr><td>評価:${stars}</td></tr><tr><td>${Val3_Arr[i].today}<td></tr><tr><td>タイトル：${Val3_Arr[i].title}</td></tr>
+      <tr><td>${Val3_Arr[i].message}</td></tr><tr><td>Name:${Val3_Arr[i].name}</td></tr>`);
+      $("#reviews").append(list_arr[i]);
+}}
+//////TODO:評価2のみ表示
+else if(filter_Val==="2"){
+const Val2_Arr=data.filter((a)=>a.number==="2");
+    $("#sum_Review").append(`<h1>評価数：${Val2_Arr.length}件</h1>`)
+    const list_arr = [];
+    for (let i = 0; i < Val2_Arr.length; i++) {
+      const stars = generateStars(Number(Val2_Arr[i].number));
+      list_arr.push(`<tr><td>評価:${stars}</td></tr><tr><td>${Val2_Arr[i].today}<td></tr><tr><td>タイトル：${Val2_Arr[i].title}</td></tr>
+      <tr><td>${Val2_Arr[i].message}</td></tr><tr><td>Name:${Val2_Arr[i].name}</td></tr>`);
+      $("#reviews").append(list_arr[i]);
+}}
+//////TODO:評価1のみ表示
+else if(filter_Val==="1"){
+const Val1_Arr=data.filter((a)=>a.number==="1");
+    $("#sum_Review").append(`<h1>評価数：${Val1_Arr.length}件</h1>`)
+    const list_arr = [];
+    for (let i = 0; i < Val1_Arr.length; i++) {
+      const stars = generateStars(Number(Val1_Arr[i].number));
+      list_arr.push(`<tr><td>評価:${stars}</td></tr><tr><td>${Val1_Arr[i].today}<td></tr><tr><td>タイトル：${Val1_Arr[i].title}</td></tr>
+      <tr><td>${Val1_Arr[i].message}</td></tr><tr><td>Name:${Val1_Arr[i].name}</td></tr>`);
+      $("#reviews").append(list_arr[i]);
+}}
+
+
 
 })
   </script>
